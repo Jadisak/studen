@@ -66,13 +66,6 @@ def main():
         else:
             st.write("No students registered yet.")
 
-    # Display student data in cards
-    for student in data:
-        st.markdown('<div class="student-card">', unsafe_allow_html=True)
-        st.write(f"**Name:** {student['name']}")
-        st.write(f"**Student ID:** {student['student_id']}", f"**Date of Birth:** {student['dob']}")
-        st.write(f"**Date of Birth:** {student['dob']}")
-        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
