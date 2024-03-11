@@ -62,7 +62,7 @@ def main():
             for student in data:
                 st.write("- Name:", student[1])
                 st.write("  Student ID:", student[2])
-                st.write("  Date of Birth:", student[3])
+                ("  Date of Birth:", student[3])
         else:
             st.write("No students registered yet.")
 
