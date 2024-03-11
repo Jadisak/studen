@@ -22,7 +22,7 @@ def main():
     for student in students:
         st.markdown('<div class="student-card">', unsafe_allow_html=True)
         st.write(f"**Name:** {student['name']}")
-        st.write(f"**Student ID:** {student['student_id']}")
+        st.write(f"**Student ID:** {student['student_id']}", f"**Date of Birth:** {student['dob']}")
         st.write(f"**Date of Birth:** {student['dob']}")
         st.markdown('</div>', unsafe_allow_html=True)
 
