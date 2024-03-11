@@ -68,8 +68,7 @@ def main():
         if data:
             st.write("### Registered Students:")
             for student in data:
-                st.write("- Name:", student[1], )
-                st.write("  Student ID:", student[2], "--  Date of Birth:", student[3])
+                st.write("- Name:", student[1],"--  Student ID:", student[2], "--  Date of Birth:", student[3])
         else:
             st.write("No students registered yet.")
 
