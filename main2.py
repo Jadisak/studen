@@ -68,7 +68,11 @@ def main():
         if data:
             st.write("### Registered Students:")
             for student in data:
-                st.write("- Name:", student[1], "=|=  Student ID:", student[2],"-|-  Date of Birth:", student[3])
+                st.markdown('<div class="student-card">', unsafe_allow_html=True)
+                st.write("- Name:", student[1])
+                ("- Student ID:", student[2])
+                ("- Date of Birth:", student[3])
+                st.markdown('</div>', unsafe_allow_html=True)
         else:
             st.write("No students registered yet.")
 
