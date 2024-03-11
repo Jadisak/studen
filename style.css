@@ -1,9 +1,14 @@
 
 
 
-h1 {
-    color: #e1e1e1;
+h1, h2 {
+    color: #f5af37;
     font-size: 36px;
+}
+
+h3 {
+    color: #51b7fb;
+    font-size: 24px;
 }
 
 button {
@@ -25,11 +30,11 @@ button {
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px #2727271a;
 }
 
 .student-card h1 {
-    color: #333;
+    color: #7c7c7c;
     font-size: 24px;
 }
 

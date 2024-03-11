@@ -1,6 +1,14 @@
 import streamlit as st
 import sqlite3
 
+# Define custom CSS styles
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Load custom CSS file
+local_css("style.css")
+
 # Function to create SQLite database and table if they don't exist
 def create_table():
     conn = sqlite3.connect("student_data.db")
@@ -60,9 +68,8 @@ def main():
         if data:
             st.write("### Registered Students:")
             for student in data:
-                st.write("- Name:", student[1])
-                st.write("  Student ID:", student[2])
-                ("  Date of Birth:", student[3])
+                st.write("- Name:", student[1], )
+                st.write("  Student ID:", student[2], "--  Date of Birth:", student[3])
         else:
             st.write("No students registered yet.")
 
