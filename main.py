@@ -1,70 +1,30 @@
 import streamlit as st
-import sqlite3
 
-# Function to create SQLite database and table if they don't exist
-def create_table():
-    conn = sqlite3.connect("student_data.db")
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS students
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                 name TEXT, 
-                 student_id TEXT,
-                 dob DATE)''')
-    conn.commit()
-    conn.close()
+# Define custom CSS styles
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# Function to insert student data into the database
-def insert_data(name, student_id, dob):
-    conn = sqlite3.connect("student_data.db")
-    c = conn.cursor()
-    c.execute('''INSERT INTO students (name, student_id, dob) 
-                 VALUES (?, ?, ?)''', (name, student_id, dob))
-    conn.commit()
-    conn.close()
-
-# Function to fetch and display student data from the database
-def view_data():
-    conn = sqlite3.connect("student_data.db")
-    c = conn.cursor()
-    c.execute("SELECT * FROM students")
-    data = c.fetchall()
-    conn.close()
-    return data
+# Load custom CSS file
+local_css("style.css")
 
 def main():
-    st.title("Student Registration App")
+    st.title("Student Data Display")
 
-    # Create the table if it doesn't exist
-    create_table()
+    # Example student data
+    students = [
+        {"name": "John Doe", "student_id": "001", "dob": "2000-01-01"},
+        {"name": "Jane Smith", "student_id": "002", "dob": "1999-05-15"},
+        {"name": "Alice Johnson", "student_id": "003", "dob": "2001-09-30"}
+    ]
 
-    # Input fields for Name, ID, and Date of Birth
-    name = st.text_input("Name:")
-    student_id = st.text_input("Student ID:")
-    dob = st.date_input("Date of Birth:")
-
-    if st.button("Register"):
-        if name and student_id and dob:
-            # Insert data into the database
-            insert_data(name, student_id, dob)
-            st.success("Registration Successful!")
-            st.write("Name:", name)
-            st.write("Student ID:", student_id)
-            st.write("Date of Birth:", dob)
-        else:
-            st.error("Please fill in all fields!")
-
-    st.header("View Registered Students")
-    # Button to fetch and display student data
-    if st.button("View Students"):
-        data = view_data()
-        if data:
-            st.write("### Registered Students:")
-            for student in data:
-                st.write("- Name:", student[1])
-                st.write("  Student ID:", student[2])
-                ("  Date of Birth:", student[3])
-        else:
-            st.write("No students registered yet.")
+    # Display student data in cards
+    for student in students:
+        st.markdown('<div class="student-card">', unsafe_allow_html=True)
+        st.write(f"**Name:** {student['name']}")
+        st.write(f"**Student ID:** {student['student_id']}")
+        st.write(f"**Date of Birth:** {student['dob']}")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
